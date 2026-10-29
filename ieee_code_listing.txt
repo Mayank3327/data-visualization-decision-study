@@ -1,0 +1,26 @@
+# IEEE-paper-ready core procedure (pseudocode/Python-style)
+
+for participant in participants:
+    trials = randomized_trials(
+        questions=12,
+        displays=["table", "bar", "line"]
+    )
+
+    for trial in trials:
+        start = timer()
+        display(trial.data, trial.display)
+        answer = get_answer()
+        confidence = get_confidence()
+        response_time = timer() - start
+
+        record(
+            display=trial.display,
+            task=trial.task_type,
+            correct=(answer == trial.correct_answer),
+            response_time=response_time,
+            confidence=confidence
+        )
+
+summarize_by_display(
+    metrics=["accuracy", "response_time", "confidence"]
+)
